@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/models/vheicle_list.dart';
+import 'package:shop_app/models/product_list.dart';
 
 import '../product_card.dart';
 
 class SliverProduct extends StatelessWidget {
-  const SliverProduct({Key? key}) : super(key: key);
+  final List? productList;
+  const SliverProduct({Key? key, this.productList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _provider = Provider.of<ProductProvider>(context);
-    final _product = _provider.products;
+    //final _product = _provider.products;
 
-    return _product.length == 0
+    return productList == null
         ? SliverToBoxAdapter(
             child: Center(
               child: Container(
@@ -24,15 +25,15 @@ class SliverProduct extends StatelessWidget {
         : SliverGrid(
             delegate: SliverChildBuilderDelegate(
                 (context, index) => ProductCard(
-                      productId: _product[index].productId,
+                      productId: productList![index].productId,
                       imageHeight: _provider.imageHeight,
-                      productName: _product[index].name,
-                      brandName: _product[index].brandName,
-                      price: _product[index].price,
-                      discount: _product[index].discount,
-                      imageUrl: _product[index].imageUrl,
+                      productName: productList![index].name,
+                      brandName: productList![index].brandName,
+                      price: productList![index].price,
+                      discount: productList![index].discount,
+                      imageUrl: productList![index].imageUrl,
                     ),
-                childCount: _product.length),
+                childCount: productList!.length),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: _provider.crossAxisCounts,
               mainAxisSpacing: 5,

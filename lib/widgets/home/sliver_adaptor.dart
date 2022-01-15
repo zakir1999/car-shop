@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/models/vheicle_list.dart';
+import 'package:shop_app/models/product_list.dart';
 
 class HomeSliverAdapter extends StatefulWidget {
-  const HomeSliverAdapter({Key? key}) : super(key: key);
+  final int? productLength;
+  const HomeSliverAdapter({Key? key, this.productLength}) : super(key: key);
 
   @override
   State<HomeSliverAdapter> createState() => _HomeSliverAdapterState();
@@ -13,6 +14,7 @@ class _HomeSliverAdapterState extends State<HomeSliverAdapter> {
   @override
   Widget build(BuildContext context) {
     final _provider = Provider.of<ProductProvider>(context);
+
     return SliverToBoxAdapter(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -20,7 +22,9 @@ class _HomeSliverAdapterState extends State<HomeSliverAdapter> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              child: Text('total ( ${_provider.products.length} )'),
+              child: widget.productLength == null
+                  ? Text('total ( 0 )')
+                  : Text('total ( ${widget.productLength} )'),
             ),
             Container(
               child: Row(

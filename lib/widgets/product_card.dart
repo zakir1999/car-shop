@@ -4,7 +4,7 @@ import 'package:shop_app/models/shop_class.dart';
 class ProductCard extends StatelessWidget {
   final double? imageHeight;
   final String productName;
-  final String brandName;
+  final String? brandName;
   final double price;
   final double discount;
   final String imageUrl;
@@ -15,7 +15,7 @@ class ProductCard extends StatelessWidget {
       required this.productId,
       required this.imageUrl,
       required this.productName,
-      required this.brandName,
+      this.brandName,
       required this.price,
       required this.discount})
       : super(key: key);
@@ -50,7 +50,7 @@ class ProductCard extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(brandName),
+              child: Text(brandName.toString()),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),

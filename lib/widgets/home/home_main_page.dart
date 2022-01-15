@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/models/vheicle_list.dart';
+import 'package:shop_app/models/product.dart';
+import 'package:shop_app/models/product_list.dart';
+import 'package:shop_app/models/vehicle/vehicle_list.dart';
+import 'package:shop_app/widgets/home/home_drawer.dart';
 
 import 'sliver_adaptor.dart';
 import 'sliver_data.dart';
@@ -17,28 +20,9 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _provider = Provider.of<ProductProvider>(context, listen: false);
+    final _provider = Provider.of<VehicleProvider>(context, listen: false);
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 55,
-                    backgroundColor: Colors.green,
-                  ),
-                  Text(
-                    'Limon ray',
-                    style: TextStyle(fontSize: 16),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+      drawer: HomeDrawer(),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -139,8 +123,16 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          HomeSliverAdapter(),
-          SliverProduct()
+          HomeSliverAdapter(
+            productLength: _provider.products.length,
+          ),
+
+          // SliverProduct(
+          //   productList: Provider.of<ProductProvider>(context).products,
+          // )
+          SliverProduct(
+            productList: Provider.of<VehicleProvider>(context).products,
+          )
         ],
       ),
       endDrawer: Drawer(

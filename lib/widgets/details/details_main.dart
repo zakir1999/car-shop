@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/models/vheicle.dart';
-import 'package:shop_app/models/vheicle_list.dart';
+import 'package:shop_app/models/product.dart';
+import 'package:shop_app/models/product_list.dart';
 import 'package:shop_app/models/shop_class.dart';
 
 class ProductDetailsPage extends StatefulWidget {
@@ -13,19 +13,11 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  // Iterable<Product> _productList = [];
-  // void getdata() {
-  //   final arg = ModalRoute.of(context)!.settings.arguments as ProductId;
-  //   Iterable<Product> product = Provider.of<ProductProvider>(context)
-  //       .products
-  //       .where((element) => element.productId == arg.productId);
-  //   _productList = product;
-  // }
-
   @override
   Widget build(BuildContext context) {
     final arg = ModalRoute.of(context)!.settings.arguments as ProductId;
-    Iterable<vheicle> _product = Provider.of<ProductProvider>(context)
+
+    Iterable<Product> _product = Provider.of<ProductProvider>(context)
         .products
         .where((element) => element.productId == arg.productId);
 
@@ -369,7 +361,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           Icons.chat_bubble_rounded,
                           color: Colors.deepOrange.shade400,
                         ),
-                        title: Align(
+                        title: const Align(
                           child: Text(
                             'voucher kivabe pabo kome kenar jonno',
                             style: TextStyle(
@@ -378,7 +370,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ),
                           alignment: Alignment(-1.9, 0),
                         ),
-                        subtitle: Align(
+                        subtitle: const Align(
                           child: Text(
                             'Md L - 12 Dec 2022',
                             style: TextStyle(color: Colors.grey),
@@ -391,7 +383,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           Icons.chat_bubble_rounded,
                           color: Colors.grey.shade400,
                         ),
-                        title: Align(
+                        title: const Align(
                           child: Text(
                             'Shop Voucher apply koren',
                             style: TextStyle(
@@ -400,7 +392,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ),
                           alignment: Alignment(-1.3, 0),
                         ),
-                        subtitle: Align(
+                        subtitle: const Align(
                           child: Text(
                             'Md L - 12 Dec 2022',
                             style: TextStyle(color: Colors.grey),
@@ -413,7 +405,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
                 Container(
                   height: 70,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       border: Border(
                           top: BorderSide(
                             color: Colors.grey,
@@ -441,6 +433,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               Container(
                 height: 200,
                 color: Colors.green,
+                // child: Image(
+                //   image: AssetImage('images/boot1.png'),
+                // ),
               ),
             ],
           )
@@ -467,7 +462,7 @@ class ProductRatingContainer extends StatelessWidget {
               children: [
                 Container(
                   child: Row(
-                    children: [
+                    children: const [
                       Text('Limon'),
                       SizedBox(
                         child: Text(' - '),
@@ -478,7 +473,7 @@ class ProductRatingContainer extends StatelessWidget {
                 ),
                 Container(
                   child: Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.star_rate,
                         color: Colors.amber,
@@ -518,7 +513,7 @@ class ProductRatingContainer extends StatelessWidget {
             child: GridView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 150,
                   mainAxisSpacing: 7.0,
                   crossAxisSpacing: 7.0),
